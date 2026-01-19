@@ -149,10 +149,7 @@ fableforge-ai/
 ## 🤝 Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your improvements.
 
----
 
-## 📄 License
-Distributed under the MIT License. See LICENSE for more information.
 
 ---
 
