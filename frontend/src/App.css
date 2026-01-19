@@ -15,7 +15,8 @@ body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   font-family: 'Inter', system-ui, sans-serif;
-  height: 100vh;
+  /* CHANGED: min-height allows scrolling if content is tall */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,6 +28,8 @@ body {
   max-width: 700px;
   padding: 20px;
   text-align: center;
+  /* Ensure content doesn't touch edges on small screens */
+  box-sizing: border-box; 
 }
 
 h1 {
@@ -55,6 +58,7 @@ h1 {
   margin-bottom: 20px;
   outline: none;
   transition: border-color 0.3s;
+  box-sizing: border-box; /* Fixes padding overflow */
 }
 
 .start-screen input:focus {
@@ -122,6 +126,42 @@ h1 {
   transform: translateX(5px);
 }
 
+/* NEW BUTTONS (Cancel/Quit) */
+.cancel-btn {
+  margin-top: 20px;
+  background: transparent;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.cancel-btn:hover {
+  background: var(--danger);
+  color: white;
+}
+
+.card-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.quit-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.quit-btn:hover {
+  color: var(--danger);
+}
+
 /* ENDINGS */
 .ending-banner {
   padding: 20px;
@@ -159,8 +199,61 @@ h1 {
   margin-bottom: 15px;
 }
 
-
-
 @keyframes spin { 100% { transform: rotate(360deg); } }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ========================================= */
+/* 📱 MOBILE RESPONSIVENESS 📱         */
+/* ========================================= */
+
+@media (max-width: 600px) {
+  
+  /* Allow layout to flow naturally on mobile */
+  body {
+    align-items: flex-start; /* Aligns content to top */
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  /* Make container full width with small padding */
+  .app-container {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  /* Shrink Titles */
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Compact Card Design */
+  .game-card {
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+
+  /* Smaller Text for Readability */
+  .story-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Full Width Buttons */
+  .start-screen input, 
+  .primary-btn {
+    width: 100%;
+  }
+  
+  /* Improve Touch Targets */
+  .choice-btn {
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+}
